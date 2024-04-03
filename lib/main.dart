@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.blue,
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -64,23 +67,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/onepiece.png', width: 45, height: 45),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: IconButton(
-              icon: Image.asset(
-                'lib/imgs/onepiece.png',
-                width: 24,
-                height: 24,
-              ),
-              onPressed: () {},
-            ),
+            icon: Image.asset('assets/onepiece.png', width: 45, height: 45),
             label: 'Business',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+          BottomNavigationBarItem(
+            icon: Image.asset('assets/onepiece.png', width: 45, height: 45),
             label: 'School',
           ),
         ],
