@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'One Piece'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue, // Utilisation d'une couleur spécifique pour la barre de navigation inférieure
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );
