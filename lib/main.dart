@@ -49,7 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20, // Adjust the font size as needed
+            fontWeight: FontWeight.bold, // Make the text bold
+          ),
+        ),
+        centerTitle: true, // Center align the text
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
