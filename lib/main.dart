@@ -51,28 +51,35 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(
           widget.title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
-            fontSize: 20, // Adjust the font size as needed
-            fontWeight: FontWeight.bold, // Make the text bold
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        centerTitle: true, // Center align the text
+        centerTitle: true,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: IconButton(
+              icon: Image.asset(
+                'lib/imgs/onepiece.png',
+                width: 24,
+                height: 24,
+              ),
+              onPressed: () {},
+            ),
             label: 'Business',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.school),
             label: 'School',
           ),
