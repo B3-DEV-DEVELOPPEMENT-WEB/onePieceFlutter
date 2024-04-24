@@ -6,7 +6,7 @@ import '../Crews/CrewMembersScreen.dart';
 class Crew {
   final int id;
   final String name;
-  final String description;  // Nouveau champ pour la description
+  final String description;
 
   Crew({required this.id, required this.name, required this.description});
 
@@ -14,11 +14,10 @@ class Crew {
     return Crew(
       id: json['id'],
       name: json['name'],
-      description: json['description'] ?? 'No description available', // Utilisation de ?? pour gérer les valeurs null
+      description: json['description'] ?? 'No description available',
     );
   }
 }
-
 
 class CrewsScreen extends StatefulWidget {
   const CrewsScreen({Key? key}) : super(key: key);
@@ -61,17 +60,20 @@ class _CrewsScreenState extends State<CrewsScreen> {
           itemCount: snapshot.data!.length,
           itemBuilder: (context, index) {
             Crew crew = snapshot.data![index];
-            return ListTile(
-              title: Text(crew.name),
-              subtitle: Text(crew.description),  // Afficher la description ici
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CrewMembersScreen(crewId: crew.id),
-                  ),
-                );
-              },
+            return Card(
+              margin: const EdgeInsets.all(8.0),
+              child: ListTile(
+                title: Text(crew.name),
+                subtitle: Text(crew.description),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CrewMembersScreen(crewId: crew.id),
+                    ),
+                  );
+                },
+              ),
             );
           },
         );
