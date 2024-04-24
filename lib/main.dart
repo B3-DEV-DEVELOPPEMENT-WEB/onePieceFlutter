@@ -6,11 +6,11 @@ import 'dart:convert';
 import 'Screen/Personnages/personnages.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   final Widget icon;
 
-  MyHomePage({super.key, required this.icon});
+  const MyHomePage({super.key, required this.icon});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
