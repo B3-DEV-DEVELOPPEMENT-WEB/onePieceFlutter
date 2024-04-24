@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'Screen/Home/home.dart';  // Assurez-vous que ce chemin est correct
-import 'Screen/Personnages/personnages.dart';  // Assurez-vous que ce chemin est correct
+import 'Screen/Home/home.dart';
+import 'package:onepieceflutter/Screen/saga/sagaScreen.dart';
+import 'dart:convert';
+import 'Screen/Personnages/personnages.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
 
   static const List<Widget> _widgetOptions = [
+    SagaScreen(),
     Text('Index 0: Home'),
     HomePage(),
     CrewsScreen(),
@@ -74,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            label: 'Business',
+            label: 'Saga',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
