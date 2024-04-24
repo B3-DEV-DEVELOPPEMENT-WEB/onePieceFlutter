@@ -44,7 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static const List<Widget> _widgetOptions = [
     SagaScreen(),
-    Text('Index 0: Home'),
     HomePage(),
     CrewsScreen(),
   ];
