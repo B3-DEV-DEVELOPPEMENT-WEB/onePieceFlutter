@@ -20,7 +20,7 @@ class Crew {
 }
 
 class CrewsScreen extends StatefulWidget {
-  const CrewsScreen({Key? key}) : super(key: key);
+  const CrewsScreen({super.key});
 
   @override
   _CrewsScreenState createState() => _CrewsScreenState();
