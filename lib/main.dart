@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'Screen/Personnages/personnages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'One Piece app'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -35,10 +39,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Index 0: Home'),
-    Text('Index 1: Business'),
-    Text('Index 2: School'),
+
+  List<Widget> get _widgetOptions => [
+    const Text('Index 0: Home'),
+    const Text('Index 1: Business'),
+    CrewsScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -76,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Business',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/onepiece.png', width: 45, height: 45),
-            label: 'School',
+            icon: Image.asset('assets/drapeau.png', width: 45, height: 45),
+            label: 'Equipages',
           ),
         ],
         currentIndex: _selectedIndex,
