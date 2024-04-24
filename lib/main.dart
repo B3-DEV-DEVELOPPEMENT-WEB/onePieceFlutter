@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'Screen/Personnages/personnages.dart';
+import 'Screen/Personnages/personnages.dart';  // Assurez-vous que ce chemin est correct
 
 void main() {
   runApp(const MyApp());
@@ -22,16 +22,20 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'One Piece app'),
+      home: MyHomePage(
+        title: 'One Piece app',
+        icon: Image.asset('assets/logo.png', width: 65, height: 65),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   final String title;
+  final Widget icon;
+
+  const MyHomePage({super.key, required this.title, required this.icon});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -40,10 +44,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  List<Widget> get _widgetOptions => [
-    const Text('Index 0: Home'),
-    const Text('Index 1: Business'),
-    CrewsScreen(),
+  static const List<Widget> _widgetOptions = [
+    Text('Index 0: Home'),
+    Text('Index 1: Business'),
+    CrewsScreen(),  // Assurez-vous que ce widget est correctement défini ailleurs
   ];
 
   void _onItemTapped(int index) {
@@ -57,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
+        leading: widget.icon,  // Affiche l'icône passée à MyHomePage
         title: Text(
           widget.title,
           style: const TextStyle(
@@ -72,17 +77,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.blue,
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Image.asset('assets/video.png', width: 45, height: 45),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/onepiece.png', width: 45, height: 45),
+            icon: Icon(Icons.business),
             label: 'Business',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/drapeau.png', width: 45, height: 45),
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.group),
             label: 'Equipages',
           ),
         ],
