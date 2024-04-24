@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../episode/episodeScreen.dart';
+
 class Saga {
   final int id;
   final String title;
@@ -21,18 +23,18 @@ class Saga {
 
   factory Saga.fromJson(Map<String, dynamic> json) {
     return Saga(
-      id: json['id'],
-      title: json['title'],
-      sagaNumber: json['saga_number'],
-      sagaChapter: json['saga_chapitre'],
-      sagaVolume: json['saga_volume'],
-      sagaEpisode: json['saga_episode'],
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      sagaNumber: json['saga_number'] ?? '',
+      sagaChapter: json['saga_chapitre'] ?? '',
+      sagaVolume: json['saga_volume'] ?? '',
+      sagaEpisode: json['saga_episode'] ?? '',
     );
   }
 }
 
 class SagaScreen extends StatefulWidget {
-  const SagaScreen({super.key});
+  const SagaScreen({Key? key}) : super(key: key);
 
   @override
   _SagaScreenState createState() => _SagaScreenState();
@@ -57,11 +59,21 @@ class _SagaScreenState extends State<SagaScreen> {
     }
   }
 
+  Future<List<Episode>> fetchEpisodes(int sagaId) async {
+    final response = await http.get(Uri.parse('https://api.api-onepiece.com/v2/episodes/fr/saga/$sagaId'));
+    if (response.statusCode == 200) {
+      List<dynamic> episodesJson = jsonDecode(response.body);
+      return episodesJson.map((json) => Episode.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load episodes');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sagas'), // Titre de la page
+        title: const Text('Sagas'),
       ),
       body: FutureBuilder<List<Saga>>(
         future: futureSagas,
@@ -73,10 +85,11 @@ class _SagaScreenState extends State<SagaScreen> {
             return Center(child: Text('Erreur : ${snapshot.error}'));
           }
           if (snapshot.hasData) {
+            List<Saga> sagas = snapshot.data!;
             return ListView.builder(
-              itemCount: snapshot.data!.length,
+              itemCount: sagas.length,
               itemBuilder: (context, index) {
-                Saga saga = snapshot.data![index];
+                Saga saga = sagas[index];
                 return ListTile(
                   title: Text(saga.title),
                   subtitle: Column(
@@ -85,9 +98,21 @@ class _SagaScreenState extends State<SagaScreen> {
                       Text('Numéro de saga : ${saga.sagaNumber}'),
                       Text('Chapitre de saga : ${saga.sagaChapter}'),
                       Text('Volume de saga : ${saga.sagaVolume}'),
-                      Text('Episode de saga : ${saga.sagaEpisode}'),
+                      Text('Épisode de saga : ${saga.sagaEpisode}'),
                     ],
                   ),
+                  onTap: () async {
+                    List<Episode> episodes = await fetchEpisodes(saga.id);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EpisodeScreen(
+                          saga: saga,
+                          episodes: episodes,
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             );
