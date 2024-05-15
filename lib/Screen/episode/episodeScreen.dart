@@ -89,6 +89,11 @@ class EpisodeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(saga.title),
+        backgroundColor: Colors.blue,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: ListView.builder(
         itemCount: episodes.length,

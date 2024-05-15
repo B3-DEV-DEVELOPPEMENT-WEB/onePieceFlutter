@@ -19,9 +19,10 @@ class CrewMembersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Membre d\'équipage'),
+        title: const Text('Membres de l\'équipage'),
+        backgroundColor: Colors.blue,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),

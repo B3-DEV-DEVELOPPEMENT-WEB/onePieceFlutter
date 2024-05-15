@@ -5,6 +5,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -34,7 +35,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Placez ici votre navigation vers une autre page
+
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
@@ -48,7 +49,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.black45,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
               ),
               child: const Text(
                 'Rejoins Luffy et son équipage pour devenir un vrai pirate !',
